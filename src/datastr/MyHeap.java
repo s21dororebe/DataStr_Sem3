@@ -6,6 +6,7 @@ public class MyHeap <T>{
     private int arraySize = DEFAULT_ARRAY_SIZE;
     private int elementCount = 0;
 
+    //MAIN functions
     public MyHeap()
     {
         elements = (T[]) new Object[arraySize];
@@ -35,6 +36,26 @@ public class MyHeap <T>{
         arraySize = newArraySize;
     }
 
+    //OTHER FUNCTIONS
+    public void enqueue(T inputElement) {
+        if(isFull()){
+            increaseHeap();
+        }
+        elements[elementCount] = inputElement;
+        elementCount++;
+        //TODO reheapUp();
+    }
+    public T dequeue() throws Exception {
+        if(isEmpty()){
+            throw (new Exception("Kaudze ir tuksa, nevar izdzest elementu"));
+        }
+        T temp = elements[0]; //root - lielaka vertiba pasa augsaa
+        elements[0] = elements[elementCount-1];
+        elements[elementCount-1] = null;
+        elementCount--;
+        //TODO reheapDown();
+        return temp;
+    }
 
 
 }
